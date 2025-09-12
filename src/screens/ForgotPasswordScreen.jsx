@@ -40,7 +40,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       <View style={styles.content}>
         <View style={styles.header}>
           <Image
-            source={{ uri: 'https://imgur.com/gallery/logo-0v5e3KW' }}
+            source={{ uri: 'https://i.imgur.com/WXRrpYV.jpeg' }}
             style={styles.logoImage}
           />
           <Text style={styles.title}>Esqueceu sua senha?</Text>
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoImage: {
-    width: 120,
-    height: 60,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
     marginBottom: 10,
   },

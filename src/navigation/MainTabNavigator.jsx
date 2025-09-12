@@ -7,6 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'; // Pacote de ícones que ins
 
 // Importe a tela de Menu
 import MenuScreen from '../screens/MenuScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 // --- Telas de Exemplo (depois você pode criar os arquivos delas) ---
 const PlaceholderScreen = ({ route }) => (
@@ -32,14 +33,14 @@ const MainTabNavigator = () => {
         tabBarInactiveTintColor: '#888', // Cor do ícone inativo (cinza)
       }}
     >
-      <Tab.Screen 
-        name="MenuList" 
-        component={PlaceholderScreen} // Usando a tela de exemplo
+      <Tab.Screen
+        name="Settings" // Mude o nome para algo mais descritivo como "Settings"
+        component={SettingsScreen} // 2. Substitua o componente de placeholder
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="menu" size={size} color={color} />
           ),
-        }} 
+        }}
       />
       <Tab.Screen 
         name="Home" 

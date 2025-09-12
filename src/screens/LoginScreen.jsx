@@ -41,13 +41,12 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.mainContent}>
         <View style={styles.header}>
            <Image
-            source={{ uri: 'https://imgur.com/a/0v5e3KW' }}
+            source={{ uri: 'https://i.imgur.com/WXRrpYV.jpeg' }}
             style={styles.logoImage}
           />
           <Text style={styles.logoText}>WORKFIT</Text>
         </View>
 
-        <Text style={styles.prompt}>Coloque o e-mail para entrar</Text>
 
         <TextInput
           style={styles.input}
@@ -115,8 +114,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   logoImage: {
-    width: 150,
-    height: 75,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
     marginBottom: 15,
   },
