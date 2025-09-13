@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   TouchableOpacity,
@@ -10,6 +9,7 @@ import {
   ScrollView,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Componente reutilizável para cada item do menu
 const MenuItem = ({ title, onPress }) => {

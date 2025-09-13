@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   TouchableOpacity,
@@ -12,6 +11,7 @@ import {
   StatusBar,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Componente para cada linha de informação
 const InfoRow = ({ label, value, icon }) => (
@@ -31,12 +31,14 @@ const ProfileScreen = ({ navigation }) => {
       <ScrollView>
         {/* Cabeçalho */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back-outline" size={28} color="#333" />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Conta</Text>
-          <Ionicons name="notifications-outline" size={24} color="#333" />
-        </View>
+  <TouchableOpacity onPress={() => navigation.goBack()}>
+    <Ionicons name="chevron-back-outline" size={28} color="#333" />
+  </TouchableOpacity>
+  <Text style={styles.headerTitle}>Conta</Text>
+  <TouchableOpacity onPress={() => navigation.getParent().navigate('Notifications')}>
+    <Ionicons name="notifications-outline" size={24} color="#333" />
+  </TouchableOpacity>
+</View>
 
         {/* Seção do Banner e Perfil */}
         <View style={styles.profileHeader}>

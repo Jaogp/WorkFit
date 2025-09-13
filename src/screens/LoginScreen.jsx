@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,
@@ -10,6 +9,7 @@ import {
   Alert,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginScreen = ({ navigation }) => {
   // Estados para armazenar os valores dos campos de e-mail и senha

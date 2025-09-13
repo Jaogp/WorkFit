@@ -10,6 +10,7 @@ import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen'; // <-- Ve
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
+import NotificationsScreen from './src/screens/NotificationsScreen';
 
 const Stack = createNativeStackNavigator();
 

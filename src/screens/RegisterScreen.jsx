@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,
@@ -11,6 +10,7 @@ import {
   StatusBar,
   ScrollView, // Usaremos ScrollView para evitar que o teclado cubra os campos
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RegisterScreen = ({ navigation }) => {
   // Estados para armazenar os valores de cada campo do formulário

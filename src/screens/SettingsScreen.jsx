@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   TouchableOpacity,
@@ -11,6 +10,7 @@ import {
   StatusBar,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Componente reutilizável para cada item de configuração
 const SettingsItem = ({ iconName, title, onPress }) => {
@@ -30,15 +30,10 @@ const SettingsScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
 
-      {/* Cabeçalho */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Configurações</Text>
-        <View style={styles.headerIcons}>
-          <Ionicons name="notifications-outline" size={24} color="#555" style={styles.bellIcon} />
-          {/* A imagem de perfil pode ser um ícone ou um componente de imagem real */}
-          <Ionicons name="person-circle-outline" size={24} color="#555" />
-        </View>
-      </View>
+         {/* 1. Cabeçalho */}
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Workfit</Text>
+         </View>
 
       {/* Lista de Opções */}
       <ScrollView>
@@ -56,7 +51,7 @@ const SettingsScreen = ({ navigation }) => {
         <SettingsItem
           title="Gerenciar Notificações"
           iconName="notifications-outline"
-          onPress={() => alert('Navegar para Gerenciar Notificações')}
+         onPress={() => navigation.getParent().navigate('Notifications')}
         />
         
         {/* Botão de voltar */}
@@ -74,14 +69,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+   header: {
     paddingVertical: 15,
-    paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: 18,
