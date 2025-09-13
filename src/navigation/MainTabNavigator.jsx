@@ -8,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'; // Pacote de ícones que ins
 // Importe a tela de Menu
 import MenuScreen from '../screens/MenuScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 // --- Telas de Exemplo (depois você pode criar os arquivos delas) ---
 const PlaceholderScreen = ({ route }) => (
@@ -52,13 +53,12 @@ const MainTabNavigator = () => {
         }} 
       />
       <Tab.Screen 
-        name="Profile" 
-        component={PlaceholderScreen} // Usando a tela de exemplo
+        name="ProfileTab" // Renomeei para evitar conflitos, mas pode manter "Profile"
+        component={ProfileScreen} // 2. Aponte a aba para a ProfileScreen real
         options={{
           tabBarIcon: ({ color }) => (
-            // Para o ícone de perfil, usamos uma imagem como no design
             <Image 
-              source={{ uri: 'https://i.imgur.com/gAYa2z3.png' }} // Use uma imagem de perfil aqui
+              source={{ uri: 'https://i.imgur.com/gAYa2z3.png' }}
               style={{ width: 30, height: 30, borderRadius: 15, borderColor: color, borderWidth: 1 }}
             />
           ),

@@ -42,11 +42,7 @@ const SettingsScreen = ({ navigation }) => {
 
       {/* Lista de Opções */}
       <ScrollView>
-        <SettingsItem
-          title="Perfil e Conta"
-          iconName="person-outline"
-          onPress={() => alert('Navegar para Perfil e Conta')}
-        />
+      
         <SettingsItem
           title="Privacidade e Segurança"
           iconName="shield-outline"
@@ -64,7 +60,7 @@ const SettingsScreen = ({ navigation }) => {
         />
         
         {/* Botão de voltar */}
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
           <Ionicons name="chevron-back-outline" size={24} color="#888" />
           <Text style={styles.backButtonText}>Voltar a tela inicial</Text>
         </TouchableOpacity>
