@@ -25,7 +25,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
     // Lógica de redefinição de senha (simulação)
     console.log('Solicitação de redefinição para o e-mail:', email);
 
-    // Mensagem de confirmação genérica por segurança
+    // Mensagem de confirmação 
     Alert.alert(
       'Verifique seu E-mail',
       'Se uma conta com este e-mail existir, um link para redefinição de senha foi enviado.'

@@ -4,17 +4,20 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import LoginScreen from './src/screens/LoginScreen';
-import RegisterScreen from './src/screens/RegisterScreen';
-import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen'; // <-- Verifique o caminho
+// Em App.jsx
+
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import ProfileScreen from './src/screens/ProfileScreen';
-import SettingsScreen from './src/screens/SettingsScreen';
 import NotificationsScreen from './src/screens/NotificationsScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import RegisterScreen from './src/screens/RegisterScreen';
+import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import RankingScreen from './src/screens/RankingScreen';
 
 const Stack = createNativeStackNavigator();
 
-const App = () => {
+
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -28,10 +31,11 @@ const App = () => {
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <Stack.Screen name="MainApp" component={MainTabNavigator} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+         <Stack.Screen name="Ranking" component={RankingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default App;

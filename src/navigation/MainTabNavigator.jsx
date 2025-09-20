@@ -1,16 +1,16 @@
-// src/navigation/MainTabNavigator.js  (você pode criar a pasta "navigation")
+// src/navigation/MainTabNavigator.js  
 
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, View, Text } from 'react-native'; // Importamos Image para o ícone do perfil
-import Ionicons from '@expo/vector-icons/Ionicons'; // Pacote de ícones que instalamos
+import Ionicons from '@expo/vector-icons/Ionicons'; // Pacote de ícones 
 
-// Importe a tela de Menu
+// Importe as tela 
+import HomeScreen from '../screens/HomeScreen';
 import MenuScreen from '../screens/MenuScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-// --- Telas de Exemplo (depois você pode criar os arquivos delas) ---
+// --- Telas de Exemplo 
 const PlaceholderScreen = ({ route }) => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     <Text>Tela: {route.name}</Text>
@@ -23,6 +23,7 @@ const Tab = createBottomTabNavigator();
 const MainTabNavigator = () => {
   return (
     <Tab.Navigator
+    initialRouteName="Menu"
       screenOptions={{
         headerShown: false, // Oculta o cabeçalho padrão do Tab Navigator
         tabBarShowLabel: false, // Oculta o texto abaixo dos ícones
@@ -35,8 +36,8 @@ const MainTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Settings" // Mude o nome para algo mais descritivo como "Settings"
-        component={SettingsScreen} // 2. Substitua o componente de placeholder
+        name="Menu" 
+        component={MenuScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="menu" size={size} color={color} />
@@ -45,7 +46,7 @@ const MainTabNavigator = () => {
       />
       <Tab.Screen 
         name="Home" 
-        component={MenuScreen} // Nossa tela principal
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
@@ -53,8 +54,8 @@ const MainTabNavigator = () => {
         }} 
       />
       <Tab.Screen 
-        name="ProfileTab" // Renomeei para evitar conflitos, mas pode manter "Profile"
-        component={ProfileScreen} // 2. Aponte a aba para a ProfileScreen real
+        name="ProfileTab" 
+        component={ProfileScreen} 
         options={{
           tabBarIcon: ({ color }) => (
             <Image 

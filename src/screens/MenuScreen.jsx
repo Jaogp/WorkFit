@@ -8,10 +8,12 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
+  Alert,
 } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Componente reutilizável para cada item do menu
+// Componente reutilizável para cada item de menu 
 const MenuItem = ({ title, onPress }) => {
   return (
     <TouchableOpacity style={styles.menuItem} onPress={onPress}>
@@ -25,22 +27,27 @@ const MenuScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      
-      {/* 1. Cabeçalho */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Workfit</Text>
+
+   {/* Cabeçalho */}
+       <View style={styles.header}>
+        <Text style={styles.headerTitle}>WorkFit</Text>
+        
+        {/* Ícone de notificação adicionado aqui */}
+        <TouchableOpacity 
+          style={styles.notificationButton} 
+          onPress={() => navigation.getParent().navigate('Notifications')}
+        >
+          <Ionicons name="notifications-outline" size={24} color="#333" />
+        </TouchableOpacity>
       </View>
 
-      {/* 2. Lista de Opções */}
+      {/* Lista de Opções */}
       <ScrollView>
-        <MenuItem title="Treinos" onPress={() => Alert.alert('Navegar', 'Indo para Treinos...')} />
         <MenuItem title="Lista de exercícios" onPress={() => Alert.alert('Navegar', 'Indo para Lista de exercícios...')} />
-        <MenuItem title="Pontuação" onPress={() => Alert.alert('Navegar', 'Indo para Pontuação...')} />
-        <MenuItem title="Configurações" onPress={() => Alert.alert('Navegar', 'Indo para Configurações...')} />
-        <MenuItem title="Notificações" onPress={() => Alert.alert('Navegar', 'Indo para Notificações...')} />
+        <MenuItem title="Pontuação" onPress={() => navigation.getParent().navigate('Ranking')} />
+        <MenuItem title="Configurações Avançadas" onPress={() => alert('Esta é uma futura tela de configurações avançadas')} />
+        <MenuItem title="Notificações" onPress={() => navigation.getParent().navigate('Notifications')} />
       </ScrollView>
-
-      {/* A Tab Bar (barra de navegação inferior) será adicionada depois */}
     </SafeAreaView>
   );
 };
@@ -48,21 +55,30 @@ const MenuScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', // Fundo branco
+    backgroundColor: '#fff',
   },
-  header: {
+header: {
+    flexDirection: 'row', // Adicione esta linha
+    justifyContent: 'center', // Adicione esta linha
+    alignItems: 'center',
     paddingVertical: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
-    alignItems: 'center',
+    position: 'relative', // Adicione esta linha para o posicionamento absoluto funcionar
   },
   headerTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: '#333',
   },
+  
+  // Adicione este novo estilo
+  notificationButton: {
+    position: 'absolute',
+    right: 20, // Define a distância da direita
+  },
   menuItem: {
-    backgroundColor: '#f2f2f2', // Cinza claro
+    backgroundColor: '#f2f2f2',
     paddingHorizontal: 20,
     paddingVertical: 25,
     borderRadius: 15,
