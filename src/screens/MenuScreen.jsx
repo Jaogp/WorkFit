@@ -43,10 +43,17 @@ const MenuScreen = ({ navigation }) => {
 
       {/* Lista de Opções */}
       <ScrollView>
-        <MenuItem title="Lista de exercícios" onPress={() => Alert.alert('Navegar', 'Indo para Lista de exercícios...')} />
+        <MenuItem title="Lista de exercícios" onPress={() => navigation.getParent().navigate('ExerciseList')} />
         <MenuItem title="Pontuação" onPress={() => navigation.getParent().navigate('Ranking')} />
-        <MenuItem title="Configurações Avançadas" onPress={() => alert('Esta é uma futura tela de configurações avançadas')} />
-        <MenuItem title="Notificações" onPress={() => navigation.getParent().navigate('Notifications')} />
+        <MenuItem title="Configurações Avançadas" onPress={() => navigation.getParent().navigate('AdvancedSettings')} />
+        <MenuItem title="Sair" onPress={() => Alert.alert(
+          'Confirmação',
+          'Você tem certeza que deseja sair?',
+          [
+            { text: 'Cancelar', style: 'cancel' },
+            { text: 'Sair', onPress: () => navigation.getParent().navigate('Login') },
+          ]
+        )} />
       </ScrollView>
     </SafeAreaView>
   );

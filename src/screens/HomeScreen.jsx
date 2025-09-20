@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
       
       {/* Cabeçalho  */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Workfit</Text>
+        <Text style={styles.headerTitle}>WorkFit</Text>
         <TouchableOpacity 
           style={styles.notificationButton} 
           onPress={() => navigation.getParent().navigate('Notifications')}

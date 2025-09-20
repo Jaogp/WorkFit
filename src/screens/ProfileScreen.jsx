@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useUser } from '../context/UserContext'; 
 
 // Componente para cada linha de informação
 const InfoRow = ({ label, value, icon }) => (
@@ -25,6 +26,7 @@ const InfoRow = ({ label, value, icon }) => (
 );
 
 const ProfileScreen = ({ navigation }) => {
+  const { userData } = useUser();
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -44,18 +46,18 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.profileHeader}>
           <View style={styles.banner} />
           <Image
-            source={{ uri: 'https://i.imgur.com/gAYa2z3.png' }} // Substitua pela imagem real do usuário
+            source={{ uri: userData.avatar }} // Substitua pela imagem real do usuário
             style={styles.profileImage}
           />
         </View>
-        <Text style={styles.profileName}>Helena G. Marques</Text>
+        <Text style={styles.profileName}>{userData.name}</Text>
 
         {/* Detalhes da Conta */}
         <View style={styles.detailsContainer}>
-          <InfoRow label="Empresa" value="Log, Lab. Inteligência Digital" />
-          <InfoRow label="Cargo" value="Desenvolvedor JAVA" />
-          <InfoRow label="Celular" value="+55 65 4002-8922" />
-          <InfoRow label="Endereço" value="Rua São Miguel, 251-123 - Pico do Amor" />
+          <InfoRow label="Empresa" value={userData.empresa} />
+          <InfoRow label="Cargo" value={userData.cargo} />
+          <InfoRow label="Celular" value={userData.celular} />
+          <InfoRow label="Endereço" value={userData.endereco} />
           <InfoRow 
             label="Pontos acumulados" 
             value="8 pontos acumulados no momento"
@@ -66,11 +68,14 @@ const ProfileScreen = ({ navigation }) => {
 
       {/* Botão de Ação na parte inferior */}
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionButtonText}>Alterar perfil</Text>
+         <TouchableOpacity 
+          style={styles.actionButton} 
+         title="Editar Perfil" onPress={() => navigation.navigate('EditProfile')}
+        >
+          <Text style={styles.actionButtonText}>Editar Perfil</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 };
 

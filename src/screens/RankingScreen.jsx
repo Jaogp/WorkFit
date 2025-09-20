@@ -94,7 +94,13 @@ const styles = StyleSheet.create({
     },
 
     headerTitle: { fontSize: 20, fontWeight: 'bold' },
-    subHeader: { fontSize: 22, fontWeight: 'bold', marginLeft: 20, marginTop: 10, marginBottom: 10 },
+    subHeader: { 
+  fontSize: 22, 
+  fontWeight: 'bold', 
+  textAlign: 'center', // Adicionamos a centralização
+  marginTop: 10, 
+  marginBottom: 10 
+},
     listContainer: { paddingHorizontal: 20 },
     itemContainer: { flexDirection: 'row', alignItems: 'center', marginVertical: 10 },
     starPlaceholder: { width: 40 },
