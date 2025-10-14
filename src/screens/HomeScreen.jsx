@@ -2,36 +2,79 @@
 
 import React from 'react';
 import {
+  SafeAreaView,
   View,
   Text,
   StyleSheet,
+  ScrollView,
+  FlatList,
+  Image,
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
+// Dados Fictícios para a tela
+const workoutData = [
+  {
+    category: 'Aquecimentos curtos',
+    exercises: [
+      { id: '1', name: 'Alongamento superior', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+      { id: '2', name: 'Alongamento inferior', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+      { id: '3', name: 'Alongamento de...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+    ],
+  },
+  {
+    category: 'Fortalecimento de punhos',
+    exercises: [
+      { id: '4', name: 'Flexão de punho no...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+      { id: '5', name: 'Flexão de punho no...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+      { id: '6', name: 'Alongamento Ati...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+    ],
+  },
+  // Você pode adicionar mais categorias aqui
+];
+
+// Componente para o card de exercício individual
+const ExerciseCard = ({ item }) => (
+  <TouchableOpacity style={styles.cardContainer}>
+    <Image source={{ uri: item.image }} style={styles.cardImage} />
+    <Text style={styles.cardTitle}>{item.name}</Text>
+    <Text style={styles.cardDuration}>{item.duration}</Text>
+  </TouchableOpacity>
+);
+
+// Componente para a linha de categoria (título + lista horizontal)
+const CategoryRow = ({ category, exercises }) => (
+  <View style={styles.categoryContainer}>
+    <Text style={styles.categoryTitle}>{category}</Text>
+    <FlatList
+      data={exercises}
+      renderItem={({ item }) => <ExerciseCard item={item} />}
+      keyExtractor={(item) => item.id}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{ paddingLeft: 20 }}
+    />
+  </View>
+);
 
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      
-      {/* Cabeçalho  */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>WorkFit</Text>
-        <TouchableOpacity 
-          style={styles.notificationButton} 
-          onPress={() => navigation.getParent().navigate('Notifications')}
-        >
-          <Ionicons name="notifications-outline" size={24} color="#333" />
-        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Treinos</Text>
       </View>
 
-      {/* Conteúdo Vazio */}
-      <View style={styles.content}>
-        <Text style={styles.placeholderText}>Tela Home</Text>
-        <Text style={styles.placeholderSubText}>O conteúdo principal do app virá aqui.</Text>
-      </View>
+      <ScrollView>
+        {workoutData.map((categoryData, index) => (
+          <CategoryRow
+            key={index}
+            category={categoryData.category}
+            exercises={categoryData.exercises}
+          />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -42,37 +85,40 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-    position: 'relative',
+    alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
-  notificationButton: {
-    position: 'absolute',
-    right: 20,
+  categoryContainer: {
+    marginTop: 20,
+    marginBottom: 10,
   },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  placeholderText: {
+  categoryTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#333',
+    marginLeft: 20,
+    marginBottom: 15,
   },
-  placeholderSubText: {
+  cardContainer: {
+    width: 150,
+    marginRight: 15,
+  },
+  cardImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 15,
+    marginBottom: 10,
+  },
+  cardTitle: {
     fontSize: 16,
-    color: '#aaa',
-    marginTop: 8,
+    fontWeight: '500',
+  },
+  cardDuration: {
+    fontSize: 14,
+    color: '#888',
   },
 });
 

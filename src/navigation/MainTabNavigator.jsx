@@ -23,7 +23,7 @@ const Tab = createBottomTabNavigator();
 const MainTabNavigator = () => {
   return (
     <Tab.Navigator
-    initialRouteName="Menu"
+    initialRouteName="Home"
       screenOptions={{
         headerShown: false, // Oculta o cabeçalho padrão do Tab Navigator
         tabBarShowLabel: false, // Oculta o texto abaixo dos ícones

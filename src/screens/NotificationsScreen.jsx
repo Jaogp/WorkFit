@@ -60,8 +60,14 @@ const NotificationsScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Notificações</Text>
-      </View>
+  <TouchableOpacity
+    style={styles.backButton}
+    onPress={() => navigation.goBack()}
+  >
+    <Ionicons name="chevron-back-outline" size={28} color="#333" />
+  </TouchableOpacity>
+  <Text style={styles.headerTitle}>Notificações</Text>
+</View>
 
       <ScrollView contentContainerStyle={styles.listContainer}>
         {/* Mapeamos os dados fictícios para renderizar a lista */}
@@ -81,12 +87,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  header: {
-    paddingVertical: 15,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
+ header: {
+  paddingVertical: 15,
+  alignItems: 'center',
+  justifyContent: 'center', // Garante a centralização do título
+  flexDirection: 'row',
+  position: 'relative', // Necessário para o posicionamento do botão
+  borderBottomWidth: 1,
+  borderBottomColor: '#f0f0f0',
+},
+backButton: {
+        position: 'absolute',
+        left: 20, // Distância da borda esquerda
+    },
+    
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
