@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Componente reutilizável para cada item de menu 
 const MenuItem = ({ title, onPress }) => {
@@ -44,7 +46,7 @@ const MenuScreen = ({ navigation }) => {
       {/* Lista de Opções */}
       <ScrollView>
         <MenuItem title="Lista de exercícios" onPress={() => navigation.getParent().navigate('ExerciseList')} />
-        <MenuItem title="Pontuação" onPress={() => navigation.getParent().navigate('Ranking')} />
+        <MenuItem title="Ranking" onPress={() => navigation.getParent().navigate('Ranking')} />
         <MenuItem title="Configurações Avançadas" onPress={() => navigation.getParent().navigate('AdvancedSettings')} />
         <MenuItem title="Sair" onPress={() => Alert.alert(
           'Confirmação',
@@ -62,30 +64,29 @@ const MenuScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background,
   },
 header: {
-    flexDirection: 'row', // Adicione esta linha
-    justifyContent: 'center', // Adicione esta linha
+    flexDirection: 'row', 
+    justifyContent: 'center', 
     alignItems: 'center',
     paddingVertical: 15,
+    backgroundColor: colors.card,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-    position: 'relative', // Adicione esta linha para o posicionamento absoluto funcionar
+   borderBottomColor: colors.border,
+    position: 'relative', 
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontFamily: typography.bold,
+    color: colors.text,
   },
-  
-  // Adicione este novo estilo
   notificationButton: {
     position: 'absolute',
     right: 20, // Define a distância da direita
   },
   menuItem: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: colors.border,
     paddingHorizontal: 20,
     paddingVertical: 25,
     borderRadius: 15,
@@ -97,12 +98,12 @@ header: {
   },
   menuItemText: {
     fontSize: 18,
-    fontWeight: '500',
-    color: '#333',
+    fontFamily: typography.regular,
+   color: colors.text,
   },
   menuItemIcon: {
     fontSize: 20,
-    color: '#888',
+    color: colors.subtext,
   },
 });
 

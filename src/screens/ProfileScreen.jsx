@@ -13,6 +13,9 @@ import {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useUser } from '../context/UserContext'; 
+import AnimatedButton from '../components/AnimatedButton';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Componente para cada linha de informação
 const InfoRow = ({ label, value, icon }) => (
@@ -44,12 +47,12 @@ const ProfileScreen = ({ navigation }) => {
 
         {/* Seção do Banner e Perfil */}
         <View style={styles.profileHeader}>
-          <View style={styles.banner} />
-          <Image
-            source={{ uri: userData.avatar }} // Substitua pela imagem real do usuário
-            style={styles.profileImage}
-          />
-        </View>
+           <View style={styles.banner} />
+             <Image
+                 source={{ uri: userData.avatar }}
+                   style={styles.profileImage}
+                />
+             </View>
         <Text style={styles.profileName}>{userData.name}</Text>
 
         {/* Detalhes da Conta */}
@@ -68,12 +71,10 @@ const ProfileScreen = ({ navigation }) => {
 
       {/* Botão de Ação na parte inferior */}
       <View style={styles.footer}>
-         <TouchableOpacity 
-          style={styles.actionButton} 
-         title="Editar Perfil" onPress={() => navigation.navigate('EditProfile')}
-        >
-          <Text style={styles.actionButtonText}>Editar Perfil</Text>
-        </TouchableOpacity>
+         <AnimatedButton 
+          title="Alterar perfil" 
+          onPress={() => navigation.navigate('EditProfile')}
+        />
       </View>
       </SafeAreaView>
   );
@@ -82,18 +83,19 @@ const ProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
+     backgroundColor: colors.background,
   },
   headerTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
+    fontFamily: typography.bold,
+    color: colors.text,
   },
   profileHeader: {
     alignItems: 'center',
@@ -102,14 +104,14 @@ const styles = StyleSheet.create({
   banner: {
     width: '100%',
     height: 100,
-    backgroundColor: '#C5C6FF', // Cor lilás do banner
+    backgroundColor: colors.primary,
   },
   profileImage: {
     width: 120,
     height: 120,
     borderRadius: 60,
     borderWidth: 4,
-    borderColor: '#fff',
+    borderColor: colors.background,
     position: 'absolute',
     top: 40, // Metade da altura do banner + um pouco
     zIndex: 1, // Garante que a imagem fique sobre o banner
@@ -117,8 +119,8 @@ const styles = StyleSheet.create({
   profileName: {
     marginTop: 70, // Espaço para a foto de perfil
     fontSize: 22,
-    fontWeight: 'bold',
-    color: '#333',
+    fontFamily: typography.bold,
+    color: colors.text,
     textAlign: 'center',
   },
   detailsContainer: {
@@ -130,8 +132,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
+    fontFamily: typography.bold,
+    color: colors.text,
     marginBottom: 5,
   },
   valueContainer: {
@@ -140,27 +142,19 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 16,
-    color: '#555',
+    color: colors.subtext,
   },
   starIcon: {
     marginRight: 8,
+    color: colors.accent,
   },
   footer: {
     padding: 20,
     borderTopWidth: 1,
-    borderTopColor: '#f0f0f0',
+   borderTopColor: colors.border,
+    backgroundColor: colors.card,
   },
-  actionButton: {
-    backgroundColor: '#7879F1', // Cor azul/lilás do botão
-    paddingVertical: 15,
-    borderRadius: 15,
-    alignItems: 'center',
-  },
-  actionButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
+    
 });
 
 export default ProfileScreen;

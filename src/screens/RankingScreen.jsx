@@ -1,6 +1,6 @@
 // src/screens/RankingScreen.js
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,10 +9,17 @@ import {
   Image,
   StatusBar,
   TouchableOpacity,
+  LayoutAnimation,
+  UIManager,
+  Platform,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
 
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 // Dados Fictícios
 const rankingData = [
   { id: '1', rank: 1, name: 'Leonardo M.', score: 25, avatar: 'https://i.imgur.com/gAYa2z3.png' },
@@ -23,55 +30,71 @@ const rankingData = [
   { id: '6', rank: 6, name: 'Jorge M. Costa', score: 10, avatar: 'https://i.imgur.com/gAYa2z3.png' },
 ];
 
-// Componente para a estrela
 const RankIcon = ({ rank }) => {
-  if (rank > 3) {
-    return <View style={styles.starPlaceholder} />; // Espaço vazio para alinhar
-  }
+  if (rank > 3) return <View style={styles.starPlaceholder} />;
 
   const iconName = 'star';
-  let iconColor = '#a0a0a0'; // Prata por padrão
+  let iconColor = '#C0C0C0'; // Prata
   if (rank === 1) iconColor = '#FFD700'; // Ouro
   if (rank === 3) iconColor = '#CD7F32'; // Bronze
 
   return <Ionicons name={iconName} size={32} color={iconColor} style={styles.starIcon} />;
 };
 
-// Componente para cada item da lista
-const RankingItem = ({ item }) => (
-  <View style={styles.itemContainer}>
-    <RankIcon rank={item.rank} />
-    <View style={styles.card}>
-      <Image source={{ uri: item.avatar }} style={styles.avatar} />
-      <View style={styles.userInfo}>
-        <Text style={styles.rankText}>{item.rank}º</Text>
-        <Text style={styles.nameText}>{item.name}</Text>
+const RankingItem = ({ item, maxScore }) => {
+  let cardStyle;
+  if (item.rank === 1) cardStyle = styles.goldCard;
+  else if (item.rank === 2) cardStyle = styles.silverCard;
+  else if (item.rank === 3) cardStyle = styles.bronzeCard;
+
+  const progressWidth = (item.score / maxScore) * 100;
+  
+  return (
+    <View style={styles.itemContainer}>
+      <RankIcon rank={item.rank} />
+      <View style={[styles.card, cardStyle]}>
+        {item.rank === 1 && (
+          <Ionicons name="trophy" size={18} color="#B8860B" style={styles.trophyIcon} />
+        )}
+        <Image source={{ uri: item.avatar }} style={styles.avatar} />
+        <View style={styles.userInfo}>
+          <Text style={styles.rankText}>{item.rank}º</Text>
+          <Text style={styles.nameText}>{item.name}</Text>
+          
+          
+          <View style={styles.progressBarBackground}>
+            <View style={[styles.progressBarForeground, { width: `${progressWidth}%` }]} />
+          </View>
+        </View>
+      </View>
+     
+      <View style={styles.scoreContainer}>
+        <Text style={styles.scoreNumber}>{item.score}</Text>
+        <Text style={styles.scoreText}>Pts</Text>
       </View>
     </View>
-    <View style={styles.scoreContainer}>
-      <Text style={styles.scoreNumber}>{item.score}</Text>
-      <Text style={styles.scoreText}>Pontos</Text>
-    </View>
-  </View>
-);
+  );
+};
 
 const RankingScreen = ({ navigation }) => {
+  useEffect(() => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+  }, []);
+
+  const maxScore = rankingData.length > 0 ? rankingData[0].score : 1;
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.header}>
-        <TouchableOpacity
-    style={styles.backButton}
-    onPress={() => navigation.goBack()}
-  >
-    <Ionicons name="chevron-back-outline" size={28} color="#333" />
-  </TouchableOpacity>
-        <Text style={styles.headerTitle}>Pontuação</Text>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back-outline" size={28} color="#333" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Ranking</Text>
       </View>
-      <Text style={styles.subHeader}>Ranking</Text>
       <FlatList
         data={rankingData}
-        renderItem={({ item }) => <RankingItem item={item} />}
+        renderItem={({ item }) => <RankingItem item={item} maxScore={maxScore} />}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContainer}
       />
@@ -80,49 +103,65 @@ const RankingScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
-   header: {
+  container: { flex: 1, backgroundColor: '#fff' },
+  header: {
     paddingVertical: 15,
     alignItems: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     flexDirection: 'row',
-    position: 'relative', // Para o botão de voltar//
-     },
-     backButton: {
-        position: 'absolute',
-        left: 20, // Distância da borda esquerda
-    },
+    position: 'relative',
+  },
+  backButton: { position: 'absolute', left: 20 },
+  headerTitle: { fontSize: 20, fontWeight: 'bold' },
+  subHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  listContainer: { paddingHorizontal: 20 },
+  itemContainer: { flexDirection: 'row', alignItems: 'center', marginVertical: 10 },
+  starPlaceholder: { width: 40 },
+  starIcon: { width: 40, textAlign: 'center' },
+  card: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#e0e0e0',
+    padding: 15,
+    marginHorizontal: 10,
+  },
+  goldCard: { borderColor: '#FFD700', backgroundColor: '#FFFBEA' },
+  silverCard: { borderColor: '#C0C0C0', backgroundColor: '#FAFAFA' },
+  bronzeCard: { borderColor: '#CD7F32', backgroundColor: '#FFF5EB' },
+  trophyIcon: { position: 'absolute', top: 8, right: 8 },
+  // ------------------------------------
+  avatar: { width: 45, height: 45, borderRadius: 22.5, marginRight: 15 },
+  userInfo: { 
+    flex: 1, // Faz o container de userInfo ocupar o espaço disponível
+    justifyContent: 'center',
+  },
+  rankText: { fontSize: 16, fontWeight: 'bold' },
+  nameText: { fontSize: 16, color: '#555' },
+  scoreContainer: { alignItems: 'center', width: 60 },
+  scoreNumber: { fontSize: 18, fontWeight: 'bold' },
+  scoreText: { fontSize: 14, color: '#555' },
 
-    headerTitle: { fontSize: 20, fontWeight: 'bold' },
-    subHeader: { 
-  fontSize: 22, 
-  fontWeight: 'bold', 
-  textAlign: 'center', // Adicionamos a centralização
-  marginTop: 10, 
-  marginBottom: 10 
-},
-    listContainer: { paddingHorizontal: 20 },
-    itemContainer: { flexDirection: 'row', alignItems: 'center', marginVertical: 10 },
-    starPlaceholder: { width: 40 },
-    starIcon: { width: 40, textAlign: 'center' },
-    card: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: '#e0e0e0',
-        padding: 15,
-        marginHorizontal: 10,
-    },
-    avatar: { width: 45, height: 45, borderRadius: 22.5, marginRight: 15 },
-    userInfo: { justifyContent: 'center' },
-    rankText: { fontSize: 16, fontWeight: 'bold' },
-    nameText: { fontSize: 16, color: '#555' },
-    scoreContainer: { alignItems: 'center', width: 60 },
-    scoreNumber: { fontSize: 18, fontWeight: 'bold' },
-    scoreText: { fontSize: 14, color: '#555' },
+  progressBarBackground: {
+    height: 6,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 3,
+    marginTop: 5,
+  },
+  progressBarForeground: {
+    height: 6,
+    backgroundColor: '#FFD700', // Usando a cor de ouro como padrão
+    borderRadius: 3,
+  },
 });
 
 export default RankingScreen;
