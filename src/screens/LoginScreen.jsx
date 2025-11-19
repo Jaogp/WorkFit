@@ -10,6 +10,8 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 const LoginScreen = ({ navigation }) => {
   // Estados para armazenar os valores dos campos de e-mail и senha
@@ -121,13 +123,13 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: 32,
-    fontWeight: 'bold',
+    ...typography.bold,
     letterSpacing: 2,
-    color: '#111',
+    color: colors.text,
   },
   prompt: {
     fontSize: 16,
-    color: '#666',
+    color: colors.text,
     marginBottom: 30,
   },
   input: {
@@ -176,7 +178,7 @@ const styles = StyleSheet.create({
   },
   footerLink: {
     color: '#555',
-    fontWeight: '500',
+    ...typography.regular,
   },
 });
 

@@ -11,11 +11,13 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Dados Fictícios Detalhados - Em um app real, você buscaria apenas o exercício com o ID recebido
 const detailedExercises = {
-  '1': { name: 'Alongamento superior', duration: '5 min', difficulty: 'Fácil', image: 'https://i.imgur.com/gAYa2z3.png', instructions: 'Fique em pé com os pés afastados na largura dos ombros. Entrelace os dedos e estique os braços para cima, o mais alto que puder. Mantenha por 30 segundos.' },
-  '2': { name: 'Alongamento inferior', duration: '5 min', difficulty: 'Fácil', image: 'https://i.imgur.com/gAYa2z3.png', instructions: 'Sente-se no chão com as pernas esticadas. Incline o tronco para a frente, tentando alcançar os pés. Mantenha a posição.' },
+  '1': { name: 'Alongamento superior', duration: '1 min', difficulty: 'Fácil', image: 'https://i.imgur.com/EiJxtat.jpeg', instructions: 'Fique em pé com os pés afastados na largura dos ombros. Entrelace os dedos e estique os braços para cima, o mais alto que puder. Mantenha por 30 segundos.' },
+  '2': { name: 'Alongamento inferior', duration: '1 min', difficulty: 'Fácil', image: 'https://i.imgur.com/n6OxJsX.jpeg', instructions: 'Sente-se no chão com as pernas esticadas. Incline o tronco para a frente, tentando alcançar os pés. Mantenha a posição.' },
   // Adicione detalhes para outros IDs de exercícios aqui
 };
 
@@ -72,21 +74,21 @@ const WorkoutDetailScreen = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#fff' },
+    container: { flex: 1, backgroundColor: colors.background },
     mainImage: { width: '100%', height: 300 },
     backButton: { position: 'absolute', top: 50, left: 20, backgroundColor: 'rgba(0,0,0,0.3)', padding: 5, borderRadius: 20 },
     contentContainer: { padding: 20 },
-    title: { fontSize: 28, fontWeight: 'bold', marginBottom: 20 },
+    title: { fontSize: 28, ...typography.bold, marginBottom: 20 },
     infoRow: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 20, backgroundColor: '#f2f2f2', padding: 15, borderRadius: 10 },
     infoBox: { alignItems: 'center' },
     infoLabel: { fontSize: 16, color: '#888' },
-    infoValue: { fontSize: 18, fontWeight: 'bold' },
+    infoValue: { fontSize: 18, ...typography.bold, marginTop: 5 },
     instructionsContainer: { marginTop: 10 },
-    sectionTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+    sectionTitle: { fontSize: 22, ...typography.bold, marginBottom: 10 },
     instructionsText: { fontSize: 16, lineHeight: 24, color: '#555' },
     footer: { padding: 20, borderTopWidth: 1, borderTopColor: '#f0f0f0' },
     actionButton: { backgroundColor: '#7879F1', paddingVertical: 15, borderRadius: 15, alignItems: 'center' },
-    actionButtonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+    actionButtonText: { color: '#fff', fontSize: 18, ...typography.bold },
 });
 
 export default WorkoutDetailScreen;

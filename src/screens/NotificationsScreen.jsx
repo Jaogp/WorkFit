@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Dados Fictícios - Em um app real, isso viria de uma API
 const notificationsData = [
@@ -103,7 +105,8 @@ backButton: {
     
   headerTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    ...typography.bold,
+    color: colors.text,
   },
   listContainer: {
     paddingVertical: 20,
@@ -118,8 +121,8 @@ backButton: {
     marginBottom: 15,
   },
   dateText: {
-    color: '#555',
-    fontWeight: '600',
+    color: colors.text,
+    ...typography.semiBold,
   },
   card: {
     backgroundColor: '#fff',
@@ -136,12 +139,12 @@ backButton: {
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    ...typography.bold,
     marginLeft: 8,
   },
   cardMessage: {
     fontSize: 16,
-    color: '#555',
+    color: colors.text,
     lineHeight: 22,
     marginBottom: 20,
   },
@@ -154,7 +157,7 @@ backButton: {
   },
   confirmButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    ...typography.bold,
   },
 });
 

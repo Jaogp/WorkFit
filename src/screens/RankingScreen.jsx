@@ -16,18 +16,19 @@ import {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 // Dados Fictícios
 const rankingData = [
-  { id: '1', rank: 1, name: 'Leonardo M.', score: 25, avatar: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '2', rank: 2, name: 'Maria D. Rodrigues', score: 22, avatar: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '3', rank: 3, name: 'Helen A. Gomes', score: 16, avatar: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '4', rank: 4, name: 'João P. Silva', score: 15, avatar: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '5', rank: 5, name: 'Junior Lopes', score: 13, avatar: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '6', rank: 6, name: 'Jorge M. Costa', score: 10, avatar: 'https://i.imgur.com/gAYa2z3.png' },
+  { id: '1', rank: 1, name: 'Leonardo M.', score: 25, avatar: 'https://i.imgur.com/gi3aZtH.jpeg' },
+  { id: '2', rank: 2, name: 'Maria D. Rodrigues', score: 22, avatar: 'https://i.imgur.com/abX9vUf.jpeg' },
+  { id: '3', rank: 3, name: 'Helen A. Gomes', score: 16, avatar: 'https://i.imgur.com/wuvjXZI.jpeg' },
+  { id: '4', rank: 4, name: 'João P. Silva', score: 15, avatar: 'https://i.imgur.com/XrKOEVl.jpeg' },
+  { id: '5', rank: 5, name: 'Junior Lopes', score: 13, avatar: 'https://i.imgur.com/KPxUMAQ.jpeg' },
+  { id: '6', rank: 6, name: 'Jorge M. Costa', score: 10, avatar: 'https://i.imgur.com/4790edo.jpeg' },
 ];
 
 const RankIcon = ({ rank }) => {
@@ -112,10 +113,9 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   backButton: { position: 'absolute', left: 20 },
-  headerTitle: { fontSize: 20, fontWeight: 'bold' },
+  headerTitle: { fontSize: 20, ...typography.bold, color: colors.text },
   subHeader: {
     fontSize: 22,
-    fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 10,

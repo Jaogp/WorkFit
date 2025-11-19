@@ -15,6 +15,8 @@ import {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useUser } from '../context/UserContext';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Componente para cada campo de input
 const FormInput = ({ label, value, onChangeText, ...props }) => (
@@ -62,7 +64,7 @@ const EditProfileScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.avatarContainer}>
           <Image
-            source={{ uri: 'https://i.imgur.com/gAYa2z3.png' }}
+            source={{ uri: 'https://i.imgur.com/wuvjXZI.jpeg' }}
             style={styles.profileImage}
           />
           <TouchableOpacity onPress={() => alert('Abrir galeria de imagens...')}>
@@ -91,13 +93,13 @@ const EditProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#fff' },
     header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 },
-    headerTitle: { fontSize: 20, fontWeight: 'bold' },
+    headerTitle: { fontSize: 20, ...typography.bold, color: colors.text },
     scrollContainer: { paddingHorizontal: 20, paddingBottom: 20 },
     avatarContainer: { alignItems: 'center', marginVertical: 20 },
     profileImage: { width: 120, height: 120, borderRadius: 60, marginBottom: 10 },
-    changeAvatarText: { color: '#7879F1', fontWeight: 'bold', fontSize: 16 },
+    changeAvatarText: { color: '#7879F1', ...typography.bold, fontSize: 16 },
     inputContainer: { marginBottom: 20 },
-    label: { fontSize: 14, fontWeight: 'bold', color: '#333', marginBottom: 8 },
+    label: { fontSize: 14, ...typography.bold, color: '#333', marginBottom: 8 },
     input: {
         borderWidth: 1,
         borderColor: '#ddd',
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         alignItems: 'center',
     },
-    saveButtonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+    saveButtonText: { color: '#fff', fontSize: 18, ...typography.bold },
 });
 
 export default EditProfileScreen;

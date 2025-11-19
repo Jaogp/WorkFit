@@ -11,6 +11,8 @@ import {
   ScrollView, // Usaremos ScrollView para evitar que o teclado cubra os campos
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 const RegisterScreen = ({ navigation }) => {
   // Estados para armazenar os valores de cada campo do formulário
@@ -141,12 +143,12 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: 28,
-    fontWeight: 'bold',
-    color: '#111',
+    ...typography.bold,
+    color: colors.text,
   },
   prompt: {
     fontSize: 16,
-    color: '#666',
+    color: colors.text,
     textAlign: 'center',
     marginBottom: 25,
   },
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
   registerButtonText: {
     color: '#ffffff',
     fontSize: 18,
-    fontWeight: '500',
+    ...typography.bold,
   },
   loginLink: {
     marginTop: 25,

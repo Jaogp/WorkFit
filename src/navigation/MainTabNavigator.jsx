@@ -59,7 +59,7 @@ const MainTabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => (
             <Image 
-              source={{ uri: 'https://i.imgur.com/gAYa2z3.png' }}
+              source={{ uri: 'https://i.imgur.com/wuvjXZI.jpeg' }}
               style={{ width: 30, height: 30, borderRadius: 15, borderColor: color, borderWidth: 1 }}
             />
           ),

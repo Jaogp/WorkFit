@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 const WorkoutInProgressScreen = ({ route, navigation }) => {
   // Recebe os detalhes do exercício da tela anterior
@@ -85,8 +87,8 @@ const styles = StyleSheet.create({
     closeButton: { position: 'absolute', top: 50, right: 20, zIndex: 1 },
     content: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
     exerciseImage: { width: '100%', height: 250, borderRadius: 15, marginBottom: 30 },
-    title: { fontSize: 28, fontWeight: 'bold', textAlign: 'center', marginBottom: 20 },
-    timer: { fontSize: 72, fontWeight: '300', marginVertical: 30 },
+    title: { fontSize: 28, ...typography.bold, textAlign: 'center', marginBottom: 20 },
+    timer: { fontSize: 72, ...typography.light, marginVertical: 30 },
     controls: { flexDirection: 'row', justifyContent: 'space-around', width: '100%', marginTop: 20 },
     controlButton: { alignItems: 'center' },
     controlText: { fontSize: 16, marginTop: 5 },

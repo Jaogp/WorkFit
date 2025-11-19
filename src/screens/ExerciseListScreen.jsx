@@ -12,16 +12,18 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Dados Fictícios
 const exercisesData = [
-  { id: '1', name: 'Alongamento Ponta dos Pés', image: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '2', name: 'Agachamento', image: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '3', name: 'Alongamento do Pescoço', image: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '4', name: 'Alongamento de Pernas', image: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '5', name: 'Alongamento da Dorsal', image: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '6', name: 'Alongamento das Mãos', image: 'https://i.imgur.com/gAYa2z3.png' },
-  { id: '7', name: 'Flexão de Braço', image: 'https://i.imgur.com/gAYa2z3.png' },
+  { id: '1', name: 'Alongamento de mãos', image: 'https://i.imgur.com/0slvZvR.jpeg' },
+  { id: '2', name: 'Agachamento', image: 'https://i.imgur.com/NHDJVK0.jpeg' },
+  { id: '3', name: 'Alongamento do Pescoço', image: 'https://i.imgur.com/1kX33bG.jpeg' },
+  { id: '4', name: 'Alongamento de Pernas', image: 'https://i.imgur.com/VgcVp9I.jpeg' },
+  { id: '5', name: 'Alongamento da Dorsal', image: 'https://i.imgur.com/0YhNJ5P.jpeg' },
+  { id: '6', name: 'Alongamento das Braços', image: 'https://i.imgur.com/HohdPqE.jpeg' },
+  { id: '7', name: 'Flexão de Braço', image: 'https://i.imgur.com/Dp64a8X.jpeg' },
 ];
 
 // Componente para cada item da lista
@@ -76,7 +78,8 @@ backButton: {
     },
   headerTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    ...typography.bold,
+    color: colors.text,
   },
   listContainer: {
     paddingHorizontal: 20,
@@ -106,8 +109,8 @@ backButton: {
   exerciseName: {
     flex: 1, // Permite que o texto ocupe o espaço disponível
     fontSize: 16,
-    fontWeight: '500',
-    color: '#333',
+    ...typography.regular,
+    color: colors.text,
   },
   arrowCircle: {
     width: 40,

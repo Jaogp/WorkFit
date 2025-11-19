@@ -25,17 +25,17 @@ const workoutData = [
   {
     category: 'Aquecimentos curtos',
     exercises: [
-      { id: '1', name: 'Alongamento superior', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
-      { id: '2', name: 'Alongamento inferior', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
-      { id: '3', name: 'Alongamento de...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+      { id: '1', name: 'Alongamento superior', duration: '1 min', image: 'https://i.imgur.com/EiJxtat.jpeg' },
+      { id: '2', name: 'Alongamento inferior', duration: '1 min', image: 'https://i.imgur.com/n6OxJsX.jpeg' },
+      { id: '3', name: 'Alongamento de corpo inteiro', duration: '1 min', image: 'https://i.imgur.com/f5mKg8Y.jpeg' },
     ],
   },
   {
-    category: 'Fortalecimento de punhos',
+    category: 'Fortalecimento de mãos e punhos',
     exercises: [
-      { id: '4', name: 'Flexão de punho no...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
-      { id: '5', name: 'Flexão de punho no...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
-      { id: '6', name: 'Alongamento Ati...', duration: '5 min', image: 'https://i.imgur.com/gAYa2z3.png' },
+      { id: '4', name: 'alongamento de punho', duration: '1 min', image: 'https://i.imgur.com/49PvuqV.jpeg' },
+      { id: '5', name: 'alongamento de dedos', duration: '1 min', image: 'https://i.imgur.com/OskLGec.jpeg' },
+      { id: '6', name: 'alongamento de mãos', duration: '1 min', image: 'https://i.imgur.com/0slvZvR.jpeg' },
     ],
   },
   // Você pode adicionar mais categorias aqui

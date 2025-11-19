@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '../theme/colors';
+import { typography } from '../theme/typography';
 
 // Componente reutilizável para cada item
 const SettingsItem = ({ iconName, title, onPress, hasBadge = false }) => {
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
   },
-  headerTitle: { fontSize: 18, fontWeight: '600' },
+  headerTitle: { fontSize: 18, ...typography.bold, color: colors.text },
   menuItem: {
     backgroundColor: '#f2f2f2',
     padding: 20,
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
   },
   itemContent: { flexDirection: 'row', alignItems: 'center' },
   itemIcon: { marginRight: 15 },
-  menuItemText: { fontSize: 18, fontWeight: '500', color: '#333' },
+  menuItemText: { fontSize: 18, ...typography.regular, color: colors.text },
   itemRight: { flexDirection: 'row', alignItems: 'center' },
   badge: {
     width: 8,

@@ -47,10 +47,10 @@ const ProfileScreen = ({ navigation }) => {
 
         {/* Seção do Banner e Perfil */}
         <View style={styles.profileHeader}>
-           <View style={styles.banner} />
+         <View style={styles.banner} />  
              <Image
-                 source={{ uri: userData.avatar }}
-                   style={styles.profileImage}
+                 source={{ uri: 'https://i.imgur.com/wuvjXZI.jpeg' }}
+            style={styles.profileImage}
                 />
              </View>
         <Text style={styles.profileName}>{userData.name}</Text>
