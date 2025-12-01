@@ -63,7 +63,7 @@ const ProfileScreen = ({ navigation }) => {
           <InfoRow label="Endereço" value={userData.endereco} />
           <InfoRow 
             label="Pontos acumulados" 
-            value="8 pontos acumulados no momento"
+            value="16 pontos acumulados no momento"
             icon="star"
           />
         </View>
