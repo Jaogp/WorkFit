@@ -1,0 +1,44 @@
+Documento de Requisitos de Software: WorkFit
+Versão: 1.0
+
+Data da Última Atualização:  10 de Dezembro de 2025
+
+1. Escopo do Produto
+O WorkFit é uma aplicação de bem-estar corporativo que utiliza gamificação para incentivar colaboradores a realizarem pausas ativas e exercícios físicos. O sistema é composto por um aplicativo móvel/web (Frontend em React Native) e uma API de gerenciamento (Backend em Django).
+________________________________________
+2. Atores (Usuários)
+•	Colaborador (Usuário Final): O funcionário que utiliza o app para treinar e ver seu progresso.
+•	Administrador (Gestor): Responsável por cadastrar novos exercícios ou gerenciar usuários (futuro painel administrativo do Django).
+________________________________________
+3. Requisitos Funcionais (RF)
+O que o sistema deve fazer.
+Módulo 1: Autenticação e Perfil
+•	[RF001] Cadastro: O sistema deve permitir que novos usuários se cadastrem informando nome, email e senha.
+•	[RF002] Login: O sistema deve permitir o login via email e senha, retornando um token de autenticação (JWT) para manter o usuário logado.
+•	[RF003] Edição de Perfil: O usuário deve poder alterar seu nome, avatar e senha.
+•	[RF004] Recuperação de Senha: O sistema deve permitir o reset de senha (envio de email ou link).
+Módulo 2: Treinos e Exercícios
+•	[RF005] Listagem de Categorias: O sistema deve exibir categorias de treino (ex: Alongamento, Cardio, Força) na tela inicial.
+•	[RF006] Detalhes do Treino: Ao selecionar um treino, o sistema deve mostrar: título, descrição, duração, dificuldade e mídia (imagem/GIF/vídeo).
+•	[RF007] Execução do Treino: O sistema deve fornecer um cronômetro regressivo para acompanhar a execução do exercício.
+•	[RF008] Conclusão de Treino: O usuário deve poder marcar o treino como "Concluído". O sistema deve registrar essa ação no histórico do usuário.
+________________________________________
+Módulo 3: Gamificação
+•	[RF009] Pontuação (XP): Cada treino concluído deve atribuir uma quantidade específica de pontos ao usuário.
+•	[RF010] Ranking Geral: O sistema deve exibir uma lista de usuários ordenada pela quantidade total de pontos.
+•	[RF011] Destaque de Pódio: Os 3 primeiros colocados do ranking devem ter destaque visual (ícones de ouro, prata, bronze).
+________________________________________
+4. Requisitos Não Funcionais (RNF)
+Como o sistema deve se comportar (Restrições Técnicas e Qualidade).
+•	[RNF001] Plataforma: O Frontend deve ser desenvolvido em React Native (Expo), compatível com Android, iOS e Web.
+•	[RNF002] Backend: A API deve ser desenvolvida em Python com Django REST Framework.
+•	[RNF003] Banco de Dados: Inicialmente SQLite (desenvolvimento), migrando para PostgreSQL em produção.
+•	[RNF004] Disponibilidade: O app deve funcionar offline para visualização de telas cacheadas, mas requer internet para sincronizar pontuação e login.
+•	[RNF005] Usabilidade: A interface deve seguir o Guia de Estilos (Fontes Poppins, Cores Institucionais) e ser responsiva.
+________________________________________
+5. Regras de Negócio (RN)
+As regras lógicas que ditam o funcionamento.
+•	[RN001] Pontuação Única: O usuário só ganha pontos pelo mesmo exercício uma vez a cada X horas (para evitar spam de pontos), ou ganha pontos ilimitados (a definir a estratégia de anti-fraude).
+o	Sugestão: Pontos ilimitados inicialmente para simplificar.
+•	[RN002] Cálculo do Ranking: O ranking é calculado com base na soma total de pontos acumulados.
+•	[RN003] Validação de Campos: O email deve ser único no sistema. A senha deve ter no mínimo 6 caracteres.
